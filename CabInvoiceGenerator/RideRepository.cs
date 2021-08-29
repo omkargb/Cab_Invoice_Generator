@@ -12,6 +12,7 @@ namespace CabInvoiceGenerator
         {
             this.userRides = new Dictionary<string, List<Ride>>();
         }
+
         public void AddRide(string userId, Ride[] rides)
         {
             bool rideList = this.userRides.ContainsKey(userId);
@@ -30,5 +31,23 @@ namespace CabInvoiceGenerator
             }
         }
 
+        public Ride[] GetRides(string userId)
+        {
+            bool rideList = this.userRides.ContainsKey(userId);
+            try
+            {
+                var userRidesArray = this.userRides[userId].ToArray();
+                Console.WriteLine(" User rides [distance,time] : ");
+                foreach(var ur in userRidesArray)
+                {
+                    Console.Write("[" + ur.time +" , " + ur.distance + "] ");
+                }
+                return userRidesArray;
+            }
+            catch (Exception)
+            {
+                throw new CabInvoiceException(CabInvoiceException.ExceptionType.INVALID_USER_ID, "Invalid user ID");
+            }
+        }
     }
 }

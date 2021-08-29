@@ -8,9 +8,9 @@ namespace CabInvoiceGenerator
     {
         // variables used
         public double distance;
-        public int time;
+        public double time;
 
-        public Ride(double distance, int time)
+        public Ride(double distance, double time)
         {
             this.distance = distance;
             this.time = time;
